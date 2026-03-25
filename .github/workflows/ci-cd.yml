@@ -47,38 +47,38 @@ jobs:
           node-version: 24
           cache: npm
           cache-dependency-path: |
-            repo-main/portfolio/package-lock.json
-            repo-development/portfolio/package-lock.json
+            repo-main/package-lock.json
+            repo-development/package-lock.json
 
       - name: Install production dependencies
-        working-directory: repo-main/portfolio
+        working-directory: repo-main
         run: npm ci
 
       - name: Lint production app
-        working-directory: repo-main/portfolio
+        working-directory: repo-main
         run: npm run lint --if-present
 
       - name: Build production app from main
-        working-directory: repo-main/portfolio
+        working-directory: repo-main
         run: npm run build
 
       - name: Install staging dependencies
-        working-directory: repo-development/portfolio
+        working-directory: repo-development
         run: npm ci
 
       - name: Lint staging app
-        working-directory: repo-development/portfolio
+        working-directory: repo-development
         run: npm run lint --if-present
 
       - name: Build staging app from development
-        working-directory: repo-development/portfolio
+        working-directory: repo-development
         run: npm run build -- --mode staging
 
       - name: Combine production root and staging path
         run: |
           mkdir -p final-dist/staging
-          cp -R repo-main/portfolio/dist/. final-dist/
-          cp -R repo-development/portfolio/dist/. final-dist/staging/
+          cp -R repo-main/dist/. final-dist/
+          cp -R repo-development/dist/. final-dist/staging/
 
       - name: Upload deploy bundle
         if: github.event_name != 'pull_request'
