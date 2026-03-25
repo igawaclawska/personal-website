@@ -14,7 +14,7 @@ const ProjectPage = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const project = projects[0];
+  const project = projects[1]; // TODO: Retrieve the project description dynamically based on the route or project ID
 
   return (
     <>
