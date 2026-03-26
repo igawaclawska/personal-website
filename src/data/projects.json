@@ -2,7 +2,7 @@
   {
     "id": 1,
     "title": "Awaze - Owner App",
-    "description": "As a member of the Owner team, I contribute to developing and maintaining the Awaze Owner App, a cross-platform mobile and web application for rental property owners. My work includes creating reusable components, shaping the frontend architecture (Clean Architecture), integrating Node.js APIs, and using Firebase Remote Config for feature updates. I also work on performance improvements and help identify and handle edge cases to keep the user experience reliable and consistent.",
+    "description": "As a member of the Owner team, I contribute to developing and maintaining the Awaze Owner App, a cross-platform mobile application for rental property owners. My work includes creating reusable components, shaping the frontend architecture (Clean Architecture), integrating Node.js APIs, and using Firebase Remote Config for feature updates. I also work on performance improvements and help identify and handle edge cases to keep the user experience reliable and consistent.",
     "technologies": [
       "Flutter",
       "Next.js",
