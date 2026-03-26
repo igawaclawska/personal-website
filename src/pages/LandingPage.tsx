@@ -12,6 +12,13 @@ import styles from "./LandingPage.module.css";
 import profilePhoto from "../assets/profile-photo-mini.png";
 
 const LandingPage = () => {
+  const images = import.meta.glob("../assets/*", { eager: true });
+
+  function getImage(filename: string) {
+    const match = Object.keys(images).find((key) => key.endsWith(filename));
+    return match ? (images[match] as { default: string }).default : "";
+  }
+
   const sectionRef = useRef<HTMLDivElement>(null);
 
   const handleScrollToSection = () => {
@@ -20,7 +27,7 @@ const LandingPage = () => {
         sectionRef.current.getBoundingClientRect().top + window.scrollY;
 
       window.scrollTo({
-        top: elementPosition - 80,
+        top: elementPosition - 120,
         behavior: "smooth",
       });
 
@@ -67,7 +74,7 @@ const LandingPage = () => {
         </Section>
         <Section>
           <Heading level={2} isUnderlined={true} ref={sectionRef} tabIndex={-1}>
-            Projects
+            Selected Work
           </Heading>
           {projects &&
             projects.map((project) => (
@@ -77,7 +84,7 @@ const LandingPage = () => {
                 title={project.title}
                 description={project.description}
                 technologies={project.technologies}
-                imageSrc={project.imageSrc}
+                imageSrc={getImage(project.imageSrc)}
                 isExternal={project.isLinkExternal}
               />
             ))}
