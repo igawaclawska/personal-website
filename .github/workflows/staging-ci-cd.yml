@@ -49,6 +49,6 @@ jobs:
         if: github.event_name != 'pull_request'
         uses: w9jds/firebase-action@v15.12.0
         with:
-          args: deploy --project personal-website-staging-2d4cd --only hosting
+          args: deploy --project staging --only hosting
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
