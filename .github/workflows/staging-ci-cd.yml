@@ -1,0 +1,54 @@
+name: Staging CI/CD
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - development
+  push:
+    branches:
+      - development
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: staging-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout development branch
+        uses: actions/checkout@v6
+        with:
+          ref: development
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6.3.0
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint app
+        run: npm run lint --if-present
+
+      - name: Build app for staging
+        run: npm run build -- --mode staging
+
+      - name: Deploy to Firebase Staging
+        if: github.event_name != 'pull_request'
+        uses: w9jds/firebase-action@v15.12.0
+        with:
+          args: deploy --project staging --only hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
