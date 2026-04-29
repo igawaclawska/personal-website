@@ -86,6 +86,7 @@ const LandingPage = () => {
                 technologies={project.technologies}
                 imageSrc={getImage(project.imageSrc)}
                 isExternal={project.isLinkExternal}
+                projectId={project.id}
               />
             ))}
         </Section>

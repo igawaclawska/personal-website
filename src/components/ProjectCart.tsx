@@ -9,6 +9,7 @@ type Props = {
   imageSrc: string;
   to: To;
   isExternal?: boolean;
+  projectId?: number;
 };
 
 const ProjectCart = ({
@@ -18,6 +19,7 @@ const ProjectCart = ({
   imageSrc,
   to,
   isExternal = false,
+  projectId,
 }: Props) => {
   return (
     <article className={styles.background}>
@@ -45,7 +47,7 @@ const ProjectCart = ({
             Learn more about this project
           </a>
         ) : (
-          <Link className={styles.goToLink} to={to as To}>
+          <Link className={styles.goToLink} to={`/project/${projectId}`}>
             Learn more about this project
           </Link>
         )}
