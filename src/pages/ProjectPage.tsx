@@ -1,6 +1,7 @@
 import { useLayoutEffect } from "react";
-import zeeguuProject from "../data/zeeguuProject.json";
-import projects from "../data/projects.json";
+import { useParams } from "react-router-dom";
+import { useProject } from "../hooks/useProject";
+import { useProjectDetail } from "../hooks/useProjectDetail";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
 import Main from "../components/Main";
@@ -10,15 +11,45 @@ import Footer from "../components/Footer";
 import styles from "./ProjectPage.module.css";
 
 const ProjectPage = () => {
+  const { slug = "" } = useParams<{ slug: string }>();
+  const projectResult = useProject(slug);
+  const detailResult = useProjectDetail(slug);
+
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const project = projects[1]; // TODO: Retrieve the project description dynamically based on the route or project ID
+  if (projectResult.status === "loading" || detailResult.status === "loading") {
+    return null;
+  }
+
+  if (
+    projectResult.status === "not-found" ||
+    detailResult.status === "not-found" ||
+    projectResult.status === "error" ||
+    detailResult.status === "error"
+  ) {
+    return (
+      <>
+        <Header>
+          <Navbar />
+        </Header>
+        <Main>
+          <Section>
+            <p>Project not found.</p>
+          </Section>
+        </Main>
+        <Footer />
+      </>
+    );
+  }
+
+  const { data: project } = projectResult;
+  const { data: detail } = detailResult;
 
   return (
     <>
-      <title>Zeeguu</title>
+      <title>{project.title}</title>
       <Header>
         <Navbar />
       </Header>
@@ -39,16 +70,16 @@ const ProjectPage = () => {
           </div>
         </Section>
 
-        {zeeguuProject.map((project) => (
-          <Section key={project.id}>
+        {detail.sections.map((section) => (
+          <Section key={section.id}>
             <Heading alignment="center" level={2} isUnderlined={true}>
-              {project.title}
+              {section.title}
             </Heading>
             <div className={styles.gridContainer}>
               <div className={styles.exampleContainer}>
-                <Heading level={3}>{project.before.title}</Heading>
+                <Heading level={3}>{section.before.title}</Heading>
                 <div className={styles.imagesColumn}>
-                  {project.before.content.map((content) => (
+                  {section.before.content.map((content) => (
                     <figure key={content.id}>
                       <img
                         className={styles.exampleImage}
@@ -61,9 +92,9 @@ const ProjectPage = () => {
                 </div>
               </div>
               <div className={styles.exampleContainer}>
-                <Heading level={3}>{project.after.title}</Heading>
+                <Heading level={3}>{section.after.title}</Heading>
                 <div className={styles.imagesColumn}>
-                  {project.after.content.map((content) => (
+                  {section.after.content.map((content) => (
                     <figure key={content.id}>
                       <img
                         className={styles.exampleImage}

@@ -8,7 +8,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/project/:id" element={<ProjectPage />} />
+        <Route path="/:slug" element={<ProjectPage />} />
       </Routes>
     </Router>
   );

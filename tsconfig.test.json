@@ -1,7 +1,9 @@
 {
   "extends": "./tsconfig.app.json",
   "compilerOptions": {
-    "types": ["jest", "@testing-library/jest-dom"]
+    "composite": true,
+    "types": ["jest", "@testing-library/jest-dom", "node"],
+    "noEmit": true
   },
   "include": ["src", "jest.setup.ts"]
 }

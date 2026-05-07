@@ -1,9 +1,17 @@
+import type React from "react";
+
+interface LinkedInIconProps extends React.SVGProps<SVGSVGElement> {
+  width?: number;
+  height?: number;
+  fill?: string;
+}
+
 const LinkedInIcon = ({
   width = 30,
   height = 30,
   fill = "currentColor",
   ...props
-}) => (
+}: LinkedInIconProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 30 30"

@@ -19,10 +19,11 @@
   },
   {
     "id": 2,
+    "slug": "zeeguu",
     "title": "ITU - Zeeguu",
     "description": "Contributed to\u00A0the front\u2011end development of\u00A0the\u00A0Zeeguu language learning platform, with a\u00A0focus on\u00A0accessibility enhancements, responsive UI components, intuitive onboarding flows, and overall user interface improvements. Optimized front\u2011end performance while refining a\u00A0mobile\u2011first, component\u2011based architecture to\u00A0enhance scalability, visual consistency, and user\u00A0experience.",
     "technologies": ["React", "JavaScript", "CSS", "Styled Components", "HTML"],
-    "link": "/zeeguu-project",
+    "link": "/zeeguu",
     "isLinkExternal": false,
     "imageSrc": "zeeguu-mockup.png"
   },
