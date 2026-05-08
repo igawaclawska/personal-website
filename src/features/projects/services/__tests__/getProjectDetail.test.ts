@@ -1,6 +1,6 @@
 import { getProjectDetail } from "../getProjectDetail";
-import type { ProjectDetailRepository } from "../../domain/repositories";
-import type { ProjectDetail } from "../../domain/project";
+import type { ProjectDetailRepository } from "../../repositories/types";
+import type { ProjectDetail } from "../../types";
 
 const mockDetail: ProjectDetail = {
   slug: "zeeguu",
@@ -8,7 +8,7 @@ const mockDetail: ProjectDetail = {
 };
 
 const mockRepo: ProjectDetailRepository = {
-  getBySlug: jest.fn((slug: string) =>
+  getDetailBySlug: jest.fn((slug: string) =>
     Promise.resolve(slug === "zeeguu" ? mockDetail : null)
   ),
 };

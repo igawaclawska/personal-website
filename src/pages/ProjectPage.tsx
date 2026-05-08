@@ -1,7 +1,7 @@
 import { useLayoutEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useProject } from "../hooks/useProject";
-import { useProjectDetail } from "../hooks/useProjectDetail";
+import { useProject } from "../features/projects/hooks/useProject";
+import { useProjectDetail } from "../features/projects/hooks/useProjectDetail";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
 import Main from "../components/Main";

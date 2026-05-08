@@ -1,12 +1,12 @@
 import { useRef } from "react";
-import { useProjects } from "../hooks/useProjects";
+import { useProjects } from "../features/projects/hooks/useProjects";
 import { getAssetUrl } from "../utils/getAssetUrl";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
 import Main from "../components/Main";
 import Section from "../components/Section";
 import Heading from "../components/Heading";
-import ProjectCard from "../components/ProjectCard";
+import ProjectCard from "../features/projects/components/ProjectCard";
 import Button from "../components/Button";
 import Footer from "../components/Footer";
 import styles from "./LandingPage.module.css";
@@ -60,9 +60,7 @@ const LandingPage = () => {
               </p>
 
               <div>
-                <Button onClick={() => handleScrollToSection()}>
-                  See Projects
-                </Button>
+                <Button onClick={handleScrollToSection}>See Projects</Button>
               </div>
             </div>
             <img className={styles.profileImg} alt="" src={profilePhoto} />
@@ -72,6 +70,8 @@ const LandingPage = () => {
           <Heading level={2} isUnderlined={true} ref={sectionRef} tabIndex={-1}>
             Selected Work
           </Heading>
+          {projectsResult.status === "loading" && <p>Loading projects…</p>}
+          {projectsResult.status === "error" && <p>Could not load projects.</p>}
           {projectsResult.status === "success" &&
             projectsResult.data.map((project) => (
               <ProjectCard

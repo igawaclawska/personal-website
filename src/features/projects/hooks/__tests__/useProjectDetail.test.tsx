@@ -1,15 +1,15 @@
 import { renderHook, waitFor } from "@testing-library/react";
 import { useProjectDetail } from "../useProjectDetail";
-import type { ProjectDetail } from "../../domain/project";
+import type { ProjectDetail } from "../../types";
 
 const mockDetail: ProjectDetail = {
   slug: "zeeguu",
   sections: [],
 };
 
-jest.mock("../../infrastructure/jsonProjectDetailRepository", () => ({
+jest.mock("../../repositories/jsonProjectDetailRepository", () => ({
   jsonProjectDetailRepository: {
-    getBySlug: jest.fn((slug: string) =>
+    getDetailBySlug: jest.fn((slug: string) =>
       Promise.resolve(slug === "zeeguu" ? mockDetail : null)
     ),
   },

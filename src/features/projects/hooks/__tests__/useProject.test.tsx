@@ -1,6 +1,6 @@
 import { renderHook, waitFor } from "@testing-library/react";
 import { useProject } from "../useProject";
-import type { Project } from "../../domain/project";
+import type { Project } from "../../types";
 
 const mockProject: Project = {
   id: 2,
@@ -13,7 +13,7 @@ const mockProject: Project = {
   imageSrc: "zeeguu-mockup.png",
 };
 
-jest.mock("../../infrastructure/jsonProjectRepository", () => ({
+jest.mock("../../repositories/jsonProjectRepository", () => ({
   jsonProjectRepository: {
     getAll: jest.fn(),
     getBySlug: jest.fn((slug: string) =>

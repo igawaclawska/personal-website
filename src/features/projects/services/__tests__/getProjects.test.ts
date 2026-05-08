@@ -1,6 +1,6 @@
 import { getProjects } from "../getProjects";
-import type { ProjectRepository } from "../../domain/repositories";
-import type { Project } from "../../domain/project";
+import type { ProjectRepository } from "../../repositories/types";
+import type { Project } from "../../types";
 
 const mockProject: Project = {
   id: 1,

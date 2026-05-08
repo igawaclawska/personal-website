@@ -1,19 +1,19 @@
 import { useState, useEffect } from "react";
-import type { Project } from "../domain/project";
-import { getProjects } from "../application/getProjects";
-import { jsonProjectRepository } from "../infrastructure/jsonProjectRepository";
 
-type UseProjectsResult =
+export type AsyncResult<T> =
   | { status: "loading" }
-  | { status: "success"; data: readonly Project[] }
+  | { status: "success"; data: T }
   | { status: "error"; error: Error };
 
-export function useProjects(): UseProjectsResult {
-  const [result, setResult] = useState<UseProjectsResult>({ status: "loading" });
+export function useAsync<T>(
+  fetchFn: () => Promise<T>,
+  deps: readonly unknown[]
+): AsyncResult<T> {
+  const [result, setResult] = useState<AsyncResult<T>>({ status: "loading" });
 
   useEffect(() => {
     let cancelled = false;
-    getProjects(jsonProjectRepository)
+    fetchFn()
       .then((data) => {
         if (!cancelled) setResult({ status: "success", data });
       })
@@ -27,7 +27,9 @@ export function useProjects(): UseProjectsResult {
     return () => {
       cancelled = true;
     };
-  }, []);
+    // deps is intentionally variable — callers control the dependency array
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, deps);
 
   return result;
 }

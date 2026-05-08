@@ -1,6 +1,6 @@
 import { renderHook, waitFor } from "@testing-library/react";
 import { useProjects } from "../useProjects";
-import type { Project } from "../../domain/project";
+import type { Project } from "../../types";
 
 const mockProject: Project = {
   id: 1,
@@ -15,7 +15,7 @@ const mockProject: Project = {
 
 const mockGetAll = jest.fn().mockResolvedValue([mockProject]);
 
-jest.mock("../../infrastructure/jsonProjectRepository", () => ({
+jest.mock("../../repositories/jsonProjectRepository", () => ({
   jsonProjectRepository: {
     getAll: (...args: unknown[]) => mockGetAll(...args),
     getBySlug: jest.fn(),

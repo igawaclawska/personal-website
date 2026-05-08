@@ -1,4 +1,4 @@
-import type { Project, ProjectDetail } from "./project";
+import type { Project, ProjectDetail } from "../types";
 
 export type ProjectRepository = {
   getAll(): Promise<readonly Project[]>;
@@ -6,5 +6,5 @@ export type ProjectRepository = {
 }
 
 export type ProjectDetailRepository = {
-  getBySlug(slug: string): Promise<ProjectDetail | null>;
+  getDetailBySlug(slug: string): Promise<ProjectDetail | null>;
 }

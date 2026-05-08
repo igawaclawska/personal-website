@@ -1,25 +1,23 @@
-import styles from "./ProjectCart.module.css";
-import { Link, To } from "react-router-dom";
-import Heading from "./Heading";
+import styles from "./ProjectCard.module.css";
+import { Link, type To } from "react-router-dom";
+import Heading from "../../../components/Heading";
 
 type Props = {
   title: string;
   description: string;
-  technologies: string[];
+  technologies: readonly string[];
   imageSrc: string;
   to: To;
   isExternal?: boolean;
-  projectId?: number;
 };
 
-const ProjectCart = ({
+const ProjectCard = ({
   title,
   description,
   technologies,
   imageSrc,
   to,
   isExternal = false,
-  projectId,
 }: Props) => {
   return (
     <article className={styles.background}>
@@ -30,8 +28,8 @@ const ProjectCart = ({
         <p>{description}</p>
         {technologies.length > 0 && (
           <div className={styles.technologies}>
-            {technologies.map((tech, index) => (
-              <span key={index} className={styles.technology}>
+            {technologies.map((tech) => (
+              <span key={tech} className={styles.technology}>
                 {tech}
               </span>
             ))}
@@ -40,14 +38,14 @@ const ProjectCart = ({
         {isExternal ? (
           <a
             className={styles.goToLink}
-            href={to as string} // Cast `to` as a string for external links
+            href={to as string}
             target="_blank"
             rel="noopener noreferrer"
           >
             Learn more about this project
           </a>
         ) : (
-          <Link className={styles.goToLink} to={`/project/${projectId}`}>
+          <Link className={styles.goToLink} to={to}>
             Learn more about this project
           </Link>
         )}
@@ -59,4 +57,4 @@ const ProjectCart = ({
   );
 };
 
-export default ProjectCart;
+export default ProjectCard;

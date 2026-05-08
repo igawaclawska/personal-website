@@ -1,5 +1,5 @@
-import type { Project } from "../domain/project";
-import type { ProjectRepository } from "../domain/repositories";
+import type { Project } from "../types";
+import type { ProjectRepository } from "../repositories/types";
 
 export async function getProjectBySlug(
   repo: ProjectRepository,

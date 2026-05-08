@@ -1,4 +1,4 @@
-export type Project ={
+export type Project = {
   readonly id: number;
   readonly slug?: string;
   readonly title: string;

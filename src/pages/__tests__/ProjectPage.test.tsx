@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import ProjectPage from "../ProjectPage";
-import type { Project, ProjectDetail } from "../../domain/project";
+import type { Project, ProjectDetail } from "../../features/projects/types";
 
 const mockProject: Project = {
   id: 2,
@@ -19,14 +19,14 @@ const mockDetail: ProjectDetail = {
   sections: [],
 };
 
-jest.mock("../../hooks/useProject", () => ({
+jest.mock("../../features/projects/hooks/useProject", () => ({
   useProject: (slug: string) =>
     slug === "zeeguu"
       ? { status: "success", data: mockProject }
       : { status: "not-found" },
 }));
 
-jest.mock("../../hooks/useProjectDetail", () => ({
+jest.mock("../../features/projects/hooks/useProjectDetail", () => ({
   useProjectDetail: (slug: string) =>
     slug === "zeeguu"
       ? { status: "success", data: mockDetail }

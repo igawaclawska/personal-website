@@ -2,7 +2,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import LandingPage from "../LandingPage";
 
-jest.mock("../../hooks/useProjects", () => ({
+jest.mock("../../features/projects/hooks/useProjects", () => ({
   useProjects: () => ({
     status: "success",
     data: [

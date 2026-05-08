@@ -1,5 +1,5 @@
-import type { Project } from "../domain/project";
-import type { ProjectRepository } from "../domain/repositories";
+import type { Project } from "../types";
+import type { ProjectRepository } from "./types";
 import projectsData from "../data/projects.json";
 
 const projects: readonly Project[] = projectsData as Project[];

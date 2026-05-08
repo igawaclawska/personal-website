@@ -1,9 +1,8 @@
-import type { ProjectDetail } from "../domain/project";
-import type { ProjectDetailRepository } from "../domain/repositories";
+import type { ProjectDetailRepository } from "./types";
 import { projectDetails } from "../data/projectDetails";
 
 export const jsonProjectDetailRepository: ProjectDetailRepository = {
-  async getBySlug(slug) {
+  async getDetailBySlug(slug) {
     const sections = projectDetails[slug];
     if (!sections) return null;
     return { slug, sections };

@@ -1,4 +1,4 @@
-import type { ProjectSection } from "../domain/project";
+import type { ProjectSection } from "../types";
 import zeeguuSections from "./zeeguuProject.json";
 
 export const projectDetails: Record<string, readonly ProjectSection[]> = {
