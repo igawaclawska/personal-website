@@ -1,24 +1,19 @@
 import { useRef } from "react";
-import projects from "../data/projects.json";
+import { useProjects } from "../features/projects/hooks/useProjects";
+import { getAssetUrl } from "../utils/getAssetUrl";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
 import Main from "../components/Main";
 import Section from "../components/Section";
 import Heading from "../components/Heading";
-import ProjectCart from "../components/ProjectCart";
+import ProjectCard from "../features/projects/components/ProjectCard";
 import Button from "../components/Button";
 import Footer from "../components/Footer";
 import styles from "./LandingPage.module.css";
 import profilePhoto from "../assets/profile-photo-mini.png";
 
 const LandingPage = () => {
-  const images = import.meta.glob("../assets/*", { eager: true });
-
-  function getImage(filename: string) {
-    const match = Object.keys(images).find((key) => key.endsWith(filename));
-    return match ? (images[match] as { default: string }).default : "";
-  }
-
+  const projectsResult = useProjects();
   const sectionRef = useRef<HTMLDivElement>(null);
 
   const handleScrollToSection = () => {
@@ -38,6 +33,7 @@ const LandingPage = () => {
       }, 500);
     }
   };
+
   return (
     <>
       <title>Iga Waclawska - Software Developer</title>
@@ -64,9 +60,7 @@ const LandingPage = () => {
               </p>
 
               <div>
-                <Button onClick={() => handleScrollToSection()}>
-                  See Projects
-                </Button>
+                <Button onClick={handleScrollToSection}>See Projects</Button>
               </div>
             </div>
             <img className={styles.profileImg} alt="" src={profilePhoto} />
@@ -76,15 +70,17 @@ const LandingPage = () => {
           <Heading level={2} isUnderlined={true} ref={sectionRef} tabIndex={-1}>
             Selected Work
           </Heading>
-          {projects &&
-            projects.map((project) => (
-              <ProjectCart
+          {projectsResult.status === "loading" && <p>Loading projects…</p>}
+          {projectsResult.status === "error" && <p>Could not load projects.</p>}
+          {projectsResult.status === "success" &&
+            projectsResult.data.map((project) => (
+              <ProjectCard
                 key={project.id}
                 to={project.link}
                 title={project.title}
                 description={project.description}
                 technologies={project.technologies}
-                imageSrc={getImage(project.imageSrc)}
+                imageSrc={getAssetUrl(project.imageSrc)}
                 isExternal={project.isLinkExternal}
               />
             ))}
