@@ -1,4 +1,4 @@
-import { useLayoutEffect } from "react";
+import { useLayoutEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useProject } from "../features/projects/hooks/useProject";
 import { useProjectDetail } from "../features/projects/hooks/useProjectDetail";
@@ -9,11 +9,16 @@ import Heading from "../components/Heading";
 import Section from "../components/Section";
 import Footer from "../components/Footer";
 import styles from "./ProjectPage.module.css";
+import Lightbox from "yet-another-react-lightbox";
+import ZoomPlugin from "yet-another-react-lightbox/plugins/zoom";
+import "yet-another-react-lightbox/styles.css";
 
 const ProjectPage = () => {
   const { slug = "" } = useParams<{ slug: string }>();
   const projectResult = useProject(slug);
   const detailResult = useProjectDetail(slug);
+
+  const [openSrc, setOpenSrc] = useState<string | null>(null);
 
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
@@ -85,6 +90,7 @@ const ProjectPage = () => {
                         className={styles.exampleImage}
                         src={content.imgSrc}
                         alt={content.alt}
+                        onClick={() => setOpenSrc(content.imgSrc)}
                       />
                       <figcaption>{content.description}</figcaption>
                     </figure>
@@ -100,6 +106,7 @@ const ProjectPage = () => {
                         className={styles.exampleImage}
                         src={content.imgSrc}
                         alt={content.alt}
+                        onClick={() => setOpenSrc(content.imgSrc)}
                       />
                       <figcaption>{content.description}</figcaption>
                     </figure>
@@ -111,6 +118,15 @@ const ProjectPage = () => {
         ))}
       </Main>
       <Footer />
+      <Lightbox
+        open={openSrc !== null}
+        close={() => setOpenSrc(null)}
+        slides={openSrc ? [{ src: openSrc }] : []}
+        plugins={[ZoomPlugin]}
+        carousel={{ finite: true }}
+        render={{ buttonPrev: () => null, buttonNext: () => null }}
+        animation={{ fade: 400 }}
+      />
     </>
   );
 };
