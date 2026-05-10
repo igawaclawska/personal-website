@@ -11,6 +11,7 @@ import Footer from "../components/Footer";
 import styles from "./ProjectPage.module.css";
 import Lightbox from "yet-another-react-lightbox";
 import ZoomPlugin from "yet-another-react-lightbox/plugins/zoom";
+import ZoomInIcon from "../components/icons/ZoomInIcon";
 import "yet-another-react-lightbox/styles.css";
 
 const ProjectPage = () => {
@@ -92,6 +93,13 @@ const ProjectPage = () => {
                         alt={content.alt}
                         onClick={() => setOpenSrc(content.imgSrc)}
                       />
+                      <button
+                        className={styles.zoomButton}
+                        onClick={() => setOpenSrc(content.imgSrc)}
+                        aria-label={`View larger: ${content.alt}`}
+                      >
+                        <ZoomInIcon />
+                      </button>
                       <figcaption>{content.description}</figcaption>
                     </figure>
                   ))}
@@ -108,6 +116,13 @@ const ProjectPage = () => {
                         alt={content.alt}
                         onClick={() => setOpenSrc(content.imgSrc)}
                       />
+                      <button
+                        className={styles.zoomButton}
+                        onClick={() => setOpenSrc(content.imgSrc)}
+                        aria-label={`View larger: ${content.alt}`}
+                      >
+                        <ZoomInIcon />
+                      </button>
                       <figcaption>{content.description}</figcaption>
                     </figure>
                   ))}
@@ -121,11 +136,13 @@ const ProjectPage = () => {
       <Lightbox
         open={openSrc !== null}
         close={() => setOpenSrc(null)}
+        controller={{ closeOnBackdropClick: true }}
         slides={openSrc ? [{ src: openSrc }] : []}
         plugins={[ZoomPlugin]}
         carousel={{ finite: true }}
         render={{ buttonPrev: () => null, buttonNext: () => null }}
         animation={{ fade: 400 }}
+        zoom={{ zoomInMultiplier: 1.25, scrollToZoom: true }}
       />
     </>
   );

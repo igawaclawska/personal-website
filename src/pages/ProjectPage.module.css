@@ -34,6 +34,26 @@
   cursor: zoom-in;
 }
 
+.zoomButton {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: rgba(0, 0, 0, 0.55);
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.35rem;
+  line-height: 0;
+  cursor: zoom-in;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.zoomButton:focus-visible {
+  opacity: 1;
+  outline-offset: 2px;
+}
+
 .exampleHeading {
   justify-self: left;
   margin-bottom: 1rem;
