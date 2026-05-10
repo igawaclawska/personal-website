@@ -12,4 +12,7 @@ module.exports = {
     '**/__tests__/**/*.{ts,tsx}',
     '**/*.{test,spec}.{ts,tsx}',
   ],
+  transformIgnorePatterns: [
+    '/node_modules/(?!(yet-another-react-lightbox)/)',
+  ],
 };
