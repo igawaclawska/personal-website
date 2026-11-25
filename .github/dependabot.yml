@@ -1,0 +1,38 @@
+version: 2
+updates:
+  # pnpm uses the "npm" ecosystem in Dependabot.
+  - package-ecosystem: "npm"
+    directory: "/"
+    target-branch: "development"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      timezone: "Europe/Copenhagen"
+    # Wait before proposing new releases, like pnpm's minimumReleaseAge but longer.
+    cooldown:
+      default-days: 3
+      semver-major-days: 14
+    commit-message:
+      prefix: "chore(deps)"
+    groups:
+      # Minor and patch updates arrive as one PR; each major update gets its own.
+      minor-and-patch:
+        update-types:
+          - "minor"
+          - "patch"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    target-branch: "development"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      timezone: "Europe/Copenhagen"
+    cooldown:
+      default-days: 3
+    commit-message:
+      prefix: "ci"
+    groups:
+      github-actions:
+        patterns:
+          - "*"
