@@ -1,0 +1,11 @@
+# Fail if a package's publish trust evidence drops compared to earlier releases.
+trustPolicy: no-downgrade
+
+# Only install versions published at least 24 hours ago. Set explicitly so it is enforced strictly.
+minimumReleaseAge: 1440
+
+# Dependencies allowed to run install scripts. Anything not listed fails the install.
+allowBuilds:
+  esbuild: true
+  unrs-resolver: true
+  '@parcel/watcher': false  # only builds from source as a fallback; prebuilt binaries ship as optional deps

@@ -13,6 +13,6 @@ module.exports = {
     '**/*.{test,spec}.{ts,tsx}',
   ],
   transformIgnorePatterns: [
-    '/node_modules/(?!(yet-another-react-lightbox)/)',
+    '/node_modules/(?!(\\.pnpm/)?yet-another-react-lightbox[@/])',
   ],
 };
