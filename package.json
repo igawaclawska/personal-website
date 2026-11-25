@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "predeploy": "npm run build",
+    "predeploy": "pnpm run build",
     "deploy": "gh-pages -d dist",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -53,5 +53,6 @@
     "typescript-eslint": "^8.24.1",
     "vite": ">=6.4.1",
     "vite-plugin-gh-pages": "^1.0.1"
-  }
+  },
+  "packageManager": "pnpm@12.23.0"
 }
