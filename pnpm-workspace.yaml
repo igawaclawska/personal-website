@@ -1,10 +1,5 @@
 # Fail if a package's publish trust evidence drops compared to earlier releases.
 trustPolicy: no-downgrade
-# Legitimate backports to older release lines, flagged because newer lines publish with stronger trust evidence.
-# semver@6.3.1: 6.x ReDoS fix published by an npm CLI maintainer. vite@6.4.1: published by vitebot with provenance.
-trustPolicyExclude:
-  - semver@6.3.1
-  - vite@6.4.1
 
 # Only install versions published at least 24 hours ago. Set explicitly so it is enforced strictly.
 minimumReleaseAge: 1440
@@ -15,3 +10,4 @@ allowBuilds:
   unrs-resolver: true
   protobufjs: false
   '@firebase/util': false
+  '@parcel/watcher': false  # only builds from source as a fallback; prebuilt binaries ship as optional deps
