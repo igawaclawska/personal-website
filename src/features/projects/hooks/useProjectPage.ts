@@ -1,17 +1,16 @@
-import type { ProjectDetail } from "../types";
 import { useAsync } from "../../../shared/hooks/useAsync";
-import { getProjectDetail } from "../services/getProjectDetail";
+import { getProjectPage, type ProjectPageData } from "../services/getProjectPage";
 import { projectRepository } from "../repositories";
 
-export type UseProjectDetailResult =
+export type UseProjectPageResult =
   | { status: "loading" }
-  | { status: "success"; data: ProjectDetail }
+  | { status: "success"; data: ProjectPageData }
   | { status: "not-found" }
   | { status: "error"; error: Error };
 
-export function useProjectDetail(slug: string): UseProjectDetailResult {
-  const asyncResult = useAsync<ProjectDetail | null>(
-    () => getProjectDetail(projectRepository, slug),
+export function useProjectPage(slug: string): UseProjectPageResult {
+  const asyncResult = useAsync<ProjectPageData | null>(
+    () => getProjectPage(projectRepository, slug),
     [slug]
   );
 

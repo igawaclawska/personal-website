@@ -19,17 +19,10 @@ const mockDetail: ProjectDetail = {
   sections: [],
 };
 
-jest.mock("../../features/projects/hooks/useProject", () => ({
-  useProject: (slug: string) =>
+jest.mock("../../features/projects/hooks/useProjectPage", () => ({
+  useProjectPage: (slug: string) =>
     slug === "zeeguu"
-      ? { status: "success", data: mockProject }
-      : { status: "not-found" },
-}));
-
-jest.mock("../../features/projects/hooks/useProjectDetail", () => ({
-  useProjectDetail: (slug: string) =>
-    slug === "zeeguu"
-      ? { status: "success", data: mockDetail }
+      ? { status: "success", data: { project: mockProject, detail: mockDetail } }
       : { status: "not-found" },
 }));
 

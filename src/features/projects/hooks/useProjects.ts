@@ -1,6 +1,5 @@
 import type { Project } from "../types";
 import { useAsync } from "../../../shared/hooks/useAsync";
-import { getProjects } from "../services/getProjects";
 import { projectRepository } from "../repositories";
 
 export type UseProjectsResult =
@@ -9,5 +8,5 @@ export type UseProjectsResult =
   | { status: "error"; error: Error };
 
 export function useProjects(): UseProjectsResult {
-  return useAsync(() => getProjects(projectRepository), []);
+  return useAsync(() => projectRepository.getAll(), []);
 }
