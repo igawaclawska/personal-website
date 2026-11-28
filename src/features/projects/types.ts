@@ -1,13 +1,15 @@
-export type Project = {
+type ProjectBase = {
   readonly id: number;
-  readonly slug?: string;
   readonly title: string;
   readonly description: string;
   readonly technologies: readonly string[];
-  readonly link: string;
-  readonly isLinkExternal: boolean;
   readonly imageSrc: string;
-}
+};
+
+/** Internal projects have a case-study page at /:slug; external ones link out. */
+export type Project =
+  | (ProjectBase & { readonly kind: "internal"; readonly slug: string })
+  | (ProjectBase & { readonly kind: "external"; readonly url: string });
 
 export type ProjectContentItem = {
   readonly id: number;

@@ -8,19 +8,27 @@ jest.mock("../../features/projects/hooks/useProjects", () => ({
     data: [
       {
         id: 2,
+        kind: "internal",
         slug: "zeeguu",
         title: "ITU - Zeeguu",
         description: "A language learning platform",
         technologies: ["React", "JavaScript"],
-        link: "/zeeguu",
-        isLinkExternal: false,
         imageSrc: "zeeguu-mockup.png",
+      },
+      {
+        id: 3,
+        kind: "external",
+        url: "https://www.opeepl.com/",
+        title: "Opeepl - Website Design",
+        description: "A website redesign",
+        technologies: ["Figma"],
+        imageSrc: "opeepl-mockup.png",
       },
     ],
   }),
 }));
 
-jest.mock("../../utils/getAssetUrl", () => ({
+jest.mock("../../shared/utils/getAssetUrl", () => ({
   getAssetUrl: () => "",
 }));
 
@@ -62,5 +70,16 @@ describe("LandingPage", () => {
     await waitFor(() => {
       expect(screen.getByText("React")).toBeInTheDocument();
     });
+  });
+
+  it("links internal projects to their page and external ones to their site", () => {
+    renderLandingPage();
+    const [internal, external] = screen.getAllByRole("link", {
+      name: /Learn more about this project/i,
+    });
+    expect(internal).toHaveAttribute("href", "/zeeguu");
+    expect(internal).not.toHaveAttribute("target");
+    expect(external).toHaveAttribute("href", "https://www.opeepl.com/");
+    expect(external).toHaveAttribute("target", "_blank");
   });
 });

@@ -1,6 +1,6 @@
 import styles from "./ProjectCard.module.css";
 import { Link, type To } from "react-router-dom";
-import Heading from "../../../components/Heading";
+import Heading from "../../../shared/components/Heading";
 
 type Props = {
   title: string;

@@ -4,19 +4,18 @@ import type { Project } from "../../types";
 
 const mockProject: Project = {
   id: 1,
+  kind: "internal",
   slug: "test-project",
   title: "Test Project",
   description: "A test project",
   technologies: ["React"],
-  link: "/test-project",
-  isLinkExternal: false,
   imageSrc: "test.png",
 };
 
 const mockGetAll = jest.fn().mockResolvedValue([mockProject]);
 
-jest.mock("../../repositories/jsonProjectRepository", () => ({
-  jsonProjectRepository: {
+jest.mock("../../repositories", () => ({
+  projectRepository: {
     getAll: (...args: unknown[]) => mockGetAll(...args),
     getBySlug: jest.fn(),
   },

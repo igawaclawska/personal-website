@@ -1,23 +1,21 @@
 import { useLayoutEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useProject } from "../features/projects/hooks/useProject";
-import { useProjectDetail } from "../features/projects/hooks/useProjectDetail";
-import Header from "../components/Header";
-import Navbar from "../components/Navbar";
-import Main from "../components/Main";
-import Heading from "../components/Heading";
-import Section from "../components/Section";
-import Footer from "../components/Footer";
+import { useProjectPage } from "../features/projects/hooks/useProjectPage";
+import Header from "../shared/components/Header";
+import Navbar from "../shared/components/Navbar";
+import Main from "../shared/components/Main";
+import Heading from "../shared/components/Heading";
+import Section from "../shared/components/Section";
+import Footer from "../shared/components/Footer";
 import styles from "./ProjectPage.module.css";
 import Lightbox from "yet-another-react-lightbox";
 import ZoomPlugin from "yet-another-react-lightbox/plugins/zoom";
-import ZoomInIcon from "../components/icons/ZoomInIcon";
+import ZoomInIcon from "../shared/components/icons/ZoomInIcon";
 import "yet-another-react-lightbox/styles.css";
 
 const ProjectPage = () => {
   const { slug = "" } = useParams<{ slug: string }>();
-  const projectResult = useProject(slug);
-  const detailResult = useProjectDetail(slug);
+  const pageResult = useProjectPage(slug);
 
   const [openSrc, setOpenSrc] = useState<string | null>(null);
 
@@ -25,16 +23,11 @@ const ProjectPage = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  if (projectResult.status === "loading" || detailResult.status === "loading") {
+  if (pageResult.status === "loading") {
     return null;
   }
 
-  if (
-    projectResult.status === "not-found" ||
-    detailResult.status === "not-found" ||
-    projectResult.status === "error" ||
-    detailResult.status === "error"
-  ) {
+  if (pageResult.status === "not-found" || pageResult.status === "error") {
     return (
       <>
         <Header>
@@ -50,8 +43,7 @@ const ProjectPage = () => {
     );
   }
 
-  const { data: project } = projectResult;
-  const { data: detail } = detailResult;
+  const { project, detail } = pageResult.data;
 
   return (
     <>
