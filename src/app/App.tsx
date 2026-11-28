@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import LandingPage from "./pages/LandingPage";
-import ProjectPage from "./pages/ProjectPage";
-import ErrorBoundary from "./components/ErrorBoundary";
+import LandingPage from "../pages/LandingPage";
+import ProjectPage from "../pages/ProjectPage";
+import ErrorBoundary from "./ErrorBoundary";
 import "./App.css";
 
 function App() {
