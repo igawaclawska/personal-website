@@ -76,12 +76,14 @@ const LandingPage = () => {
             projectsResult.data.map((project) => (
               <ProjectCard
                 key={project.id}
-                to={project.link}
+                to={
+                  project.kind === "internal" ? `/${project.slug}` : project.url
+                }
                 title={project.title}
                 description={project.description}
                 technologies={project.technologies}
                 imageSrc={getAssetUrl(project.imageSrc)}
-                isExternal={project.isLinkExternal}
+                isExternal={project.kind === "external"}
               />
             ))}
         </Section>

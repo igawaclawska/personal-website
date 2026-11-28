@@ -1,1 +1,1 @@
-export { jsonProjectRepository as projectRepository } from "./jsonProjectRepository";
+export { staticProjectRepository as projectRepository } from "./staticProjectRepository";

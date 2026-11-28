@@ -4,12 +4,11 @@ import type { Project, ProjectDetail } from "../../types";
 
 const mockProject: Project = {
   id: 2,
+  kind: "internal",
   slug: "zeeguu",
   title: "ITU - Zeeguu",
   description: "A language learning platform",
   technologies: ["React"],
-  link: "/zeeguu",
-  isLinkExternal: false,
   imageSrc: "zeeguu-mockup.png",
 };
 

@@ -4,16 +4,15 @@ import type { Project, ProjectDetail } from "../../types";
 
 const zeeguu: Project = {
   id: 2,
+  kind: "internal",
   slug: "zeeguu",
   title: "ITU - Zeeguu",
   description: "A language learning platform",
   technologies: ["React", "JavaScript"],
-  link: "/zeeguu",
-  isLinkExternal: false,
   imageSrc: "zeeguu-mockup.png",
 };
 
-const noDetail: Project = { ...zeeguu, id: 3, slug: "no-detail", link: "/no-detail" };
+const noDetail: Project = { ...zeeguu, id: 3, slug: "no-detail" };
 
 const zeeguuDetail: ProjectDetail = { slug: "zeeguu", sections: [] };
 
