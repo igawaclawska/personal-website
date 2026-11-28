@@ -25,4 +25,25 @@ export default tseslint.config(
       ],
     },
   },
+  // Imports point one way: app → pages → features → shared.
+  ...[
+    { files: ['src/shared/**'], forbidden: ['features', 'pages', 'app'] },
+    { files: ['src/features/**'], forbidden: ['pages', 'app'] },
+    { files: ['src/pages/**'], forbidden: ['app'] },
+  ].map(({ files, forbidden }) => ({
+    files,
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: [
+            {
+              group: forbidden.map((dir) => `**/${dir}/**`),
+              message: 'Imports must point one way: app → pages → features → shared.',
+            },
+          ],
+        },
+      ],
+    },
+  })),
 )
