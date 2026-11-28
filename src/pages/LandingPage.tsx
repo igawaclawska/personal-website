@@ -1,14 +1,14 @@
 import { useRef } from "react";
 import { useProjects } from "../features/projects/hooks/useProjects";
-import { getAssetUrl } from "../utils/getAssetUrl";
-import Header from "../components/Header";
-import Navbar from "../components/Navbar";
-import Main from "../components/Main";
-import Section from "../components/Section";
-import Heading from "../components/Heading";
+import { getAssetUrl } from "../shared/utils/getAssetUrl";
+import Header from "../shared/components/Header";
+import Navbar from "../shared/components/Navbar";
+import Main from "../shared/components/Main";
+import Section from "../shared/components/Section";
+import Heading from "../shared/components/Heading";
 import ProjectCard from "../features/projects/components/ProjectCard";
-import Button from "../components/Button";
-import Footer from "../components/Footer";
+import Button from "../shared/components/Button";
+import Footer from "../shared/components/Footer";
 import styles from "./LandingPage.module.css";
 import profilePhoto from "../assets/profile-photo-mini.png";
 

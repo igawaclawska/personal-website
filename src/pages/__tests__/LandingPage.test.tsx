@@ -20,7 +20,7 @@ jest.mock("../../features/projects/hooks/useProjects", () => ({
   }),
 }));
 
-jest.mock("../../utils/getAssetUrl", () => ({
+jest.mock("../../shared/utils/getAssetUrl", () => ({
   getAssetUrl: () => "",
 }));
 

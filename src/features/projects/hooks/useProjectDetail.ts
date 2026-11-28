@@ -1,5 +1,5 @@
 import type { ProjectDetail } from "../types";
-import { useAsync } from "../../../hooks/useAsync";
+import { useAsync } from "../../../shared/hooks/useAsync";
 import { getProjectDetail } from "../services/getProjectDetail";
 import { jsonProjectDetailRepository } from "../repositories/jsonProjectDetailRepository";
 

@@ -1,5 +1,5 @@
 import type { Project } from "../types";
-import { useAsync } from "../../../hooks/useAsync";
+import { useAsync } from "../../../shared/hooks/useAsync";
 import { getProjectBySlug } from "../services/getProjectBySlug";
 import { jsonProjectRepository } from "../repositories/jsonProjectRepository";
 
