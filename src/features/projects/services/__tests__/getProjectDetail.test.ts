@@ -1,5 +1,5 @@
 import { getProjectDetail } from "../getProjectDetail";
-import type { ProjectDetailRepository } from "../../repositories/types";
+import type { ProjectRepository } from "../../repositories/types";
 import type { ProjectDetail } from "../../types";
 
 const mockDetail: ProjectDetail = {
@@ -7,7 +7,9 @@ const mockDetail: ProjectDetail = {
   sections: [],
 };
 
-const mockRepo: ProjectDetailRepository = {
+const mockRepo: ProjectRepository = {
+  getAll: jest.fn(),
+  getBySlug: jest.fn(),
   getDetailBySlug: jest.fn((slug: string) =>
     Promise.resolve(slug === "zeeguu" ? mockDetail : null)
   ),

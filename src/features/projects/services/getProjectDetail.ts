@@ -1,8 +1,8 @@
 import type { ProjectDetail } from "../types";
-import type { ProjectDetailRepository } from "../repositories/types";
+import type { ProjectRepository } from "../repositories/types";
 
 export async function getProjectDetail(
-  repo: ProjectDetailRepository,
+  repo: ProjectRepository,
   slug: string
 ): Promise<ProjectDetail | null> {
   if (!slug || typeof slug !== "string") return null;

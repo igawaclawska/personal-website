@@ -7,8 +7,8 @@ const mockDetail: ProjectDetail = {
   sections: [],
 };
 
-jest.mock("../../repositories/jsonProjectDetailRepository", () => ({
-  jsonProjectDetailRepository: {
+jest.mock("../../repositories", () => ({
+  projectRepository: {
     getDetailBySlug: jest.fn((slug: string) =>
       Promise.resolve(slug === "zeeguu" ? mockDetail : null)
     ),

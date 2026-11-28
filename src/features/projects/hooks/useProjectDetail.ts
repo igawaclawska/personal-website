@@ -1,7 +1,7 @@
 import type { ProjectDetail } from "../types";
 import { useAsync } from "../../../shared/hooks/useAsync";
 import { getProjectDetail } from "../services/getProjectDetail";
-import { jsonProjectDetailRepository } from "../repositories/jsonProjectDetailRepository";
+import { projectRepository } from "../repositories";
 
 export type UseProjectDetailResult =
   | { status: "loading" }
@@ -11,7 +11,7 @@ export type UseProjectDetailResult =
 
 export function useProjectDetail(slug: string): UseProjectDetailResult {
   const asyncResult = useAsync<ProjectDetail | null>(
-    () => getProjectDetail(jsonProjectDetailRepository, slug),
+    () => getProjectDetail(projectRepository, slug),
     [slug]
   );
 

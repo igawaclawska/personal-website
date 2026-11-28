@@ -13,8 +13,8 @@ const mockProject: Project = {
   imageSrc: "zeeguu-mockup.png",
 };
 
-jest.mock("../../repositories/jsonProjectRepository", () => ({
-  jsonProjectRepository: {
+jest.mock("../../repositories", () => ({
+  projectRepository: {
     getAll: jest.fn(),
     getBySlug: jest.fn((slug: string) =>
       Promise.resolve(slug === "zeeguu" ? mockProject : null)

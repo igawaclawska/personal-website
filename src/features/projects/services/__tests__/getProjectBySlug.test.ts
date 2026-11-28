@@ -15,6 +15,7 @@ const mockProject: Project = {
 
 const mockRepo: ProjectRepository = {
   getAll: jest.fn(),
+  getDetailBySlug: jest.fn(),
   getBySlug: jest.fn((slug: string) =>
     Promise.resolve(slug === "zeeguu" ? mockProject : null)
   ),

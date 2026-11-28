@@ -16,6 +16,7 @@ const mockProject: Project = {
 const mockRepo: ProjectRepository = {
   getAll: jest.fn().mockResolvedValue([mockProject]),
   getBySlug: jest.fn(),
+  getDetailBySlug: jest.fn(),
 };
 
 describe("getProjects", () => {
@@ -28,6 +29,7 @@ describe("getProjects", () => {
     const emptyRepo: ProjectRepository = {
       getAll: jest.fn().mockResolvedValue([]),
       getBySlug: jest.fn(),
+      getDetailBySlug: jest.fn(),
     };
     const result = await getProjects(emptyRepo);
     expect(result).toHaveLength(0);

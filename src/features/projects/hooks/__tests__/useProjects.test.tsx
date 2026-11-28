@@ -15,8 +15,8 @@ const mockProject: Project = {
 
 const mockGetAll = jest.fn().mockResolvedValue([mockProject]);
 
-jest.mock("../../repositories/jsonProjectRepository", () => ({
-  jsonProjectRepository: {
+jest.mock("../../repositories", () => ({
+  projectRepository: {
     getAll: (...args: unknown[]) => mockGetAll(...args),
     getBySlug: jest.fn(),
   },
